@@ -26,10 +26,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('stones', function(Blueprint $table){
-            $table->dropColumn('owner_id');
+            $table->dropForeign(['owner_id']);
         });
         Schema::table('category_stone', function(Blueprint $table){
-            $table->dropColumn(['stone_id', 'category_id']);
+            $table->dropForeign(['stone_id']);
+            $table->dropForeign(['category_id']);
         });
     }
 };
